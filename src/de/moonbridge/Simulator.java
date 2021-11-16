@@ -2,11 +2,13 @@ package de.moonbridge;
 
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.IntPredicate;
 
 public class Simulator {
 
     int w1seiten;
     int w2seiten;
+    int beginner;
     int[] w1;
     int[] w2;
     int[] kegel1 = {1,0,0,0};
@@ -14,22 +16,23 @@ public class Simulator {
 
     int winner = 0;
 
-    public Simulator(int[] wuerfel1, int[] wuerfel2){
+    public Simulator(int[] wuerfel1, int[] wuerfel2, int pBeginner){
         w1seiten = wuerfel1[0];
         w2seiten = wuerfel2[0];
         w1 = Arrays.copyOfRange(wuerfel1, 1, wuerfel1.length);
         w2 = Arrays.copyOfRange(wuerfel2, 1, wuerfel2.length);
+        beginner = pBeginner;
     }
 
     public int startGame(){
 
-        if (wuerfeln(w1) != wuerfeln(w2)){
-            if (wuerfeln(w1) > wuerfeln(w2)){
-                gameActive(1);
-            } else {
-                gameActive(2);
-            }
+        if (!Arrays.stream(w1).anyMatch(i -> i == 6)){
+            return 2;
+        } else if (!Arrays.stream(w2).anyMatch(i -> i == 6)){
+            return 1;
         }
+
+        gameActive(beginner);
 
         if(winner == 1){
             return 1;
@@ -40,6 +43,8 @@ public class Simulator {
     }
 
     public void gameActive(int firstPlayer){
+
+        int activePlayer = firstPlayer;
 
     }
 
