@@ -51,8 +51,48 @@ public class Simulator {
         while (winner == 0){
             if (activePlayer == 1){
                 activeNumber = wuerfeln(w1);
-                if (activeNumber == 6 && !Arrays.stream(w1).anyMatch(i -> i == 0)){
+                if (activeNumber == 6 && !Arrays.stream(kegel1).anyMatch(i -> i == 0)){
+                    for (int i = 0; i < 4; i++){
+                        if (kegel1[i] <= 38){
+                            if (kegel1[i] == 38 && !Arrays.stream(kegel1).anyMatch(j -> j == 44)){
+                                kegel1[i] = 44;
+                                i = 4;
+                            } if (kegel1[i] == 37 && !Arrays.stream(kegel1).anyMatch(j -> j == 43)){
+                                kegel1[i] = 43;
+                                i = 4;
+                            } if (kegel1[i] == 36 && !Arrays.stream(kegel1).anyMatch(j -> j == 42)){
+                                kegel1[i] = 42;
+                                i = 4;
+                            } if (kegel1[i] == 35 && !Arrays.stream(kegel1).anyMatch(j -> j == 41)){
+                                kegel1[i] = 41;
+                                i = 4;
+                            }else {
+                                kegel1[i] = kegel1[i] + 6;
+                                i = 4;
+                            }
+                        }
+                    }
+                } else if (activeNumber == 6 && Arrays.stream(kegel1).anyMatch(i -> i == 0) && Arrays.stream(kegel1).anyMatch(i -> i == 1)){
+                    for (int i = 0; i < 4; i++){
+                        if (kegel1[i] == 1){
+                            kegel1[i] = kegel1[i] + 6;
+                        }
+                    }
+                } else if (activeNumber == 6 && Arrays.stream(kegel1).anyMatch(i -> i == 0) && !Arrays.stream(kegel1).anyMatch(i -> i == 1)){
+                    for (int i = 0; i < 4; i++){
+                        if (kegel1[i] == 0){
+                            kegel1[i] = 1;
+                            i = 4;
+                        }
+                    }
+                }
 
+                for (int i = 0; i < 4; i++){
+                    for (int j = 0; j < 4; j++){
+                        if (kegel1[i] == kegel2[j] && kegel1[i] <= 40){
+                            kegel2[j] = 0;
+                        }
+                    }
                 }
 
                 if (kegel1 == win){
