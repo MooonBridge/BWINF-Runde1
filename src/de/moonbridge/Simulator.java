@@ -13,6 +13,7 @@ public class Simulator {
     int[] w2;
     int[] kegel1 = {1,0,0,0};
     int[] kegel2 = {21,0,0,0};
+    int[] win = {41,42,43,44};
 
     int winner = 0;
 
@@ -45,6 +46,21 @@ public class Simulator {
     public void gameActive(int firstPlayer){
 
         int activePlayer = firstPlayer;
+        int activeNumber;
+
+        while (winner == 0){
+            if (activePlayer == 1){
+                activeNumber = wuerfeln(w1);
+                if (activeNumber == 6 && !Arrays.stream(w1).anyMatch(i -> i == 0)){
+
+                }
+
+                if (kegel1 == win){
+                    winner = 1;
+                }
+            }
+
+        }
 
     }
 
