@@ -55,10 +55,22 @@ public class Simulator {
 
                 if (Arrays.stream(kegel1).anyMatch(i -> i == 1)){
 
-                    if(activeNumber == 6){
-
-                    } else {
-
+                    for (int i = 3; i >= 0; i--){
+                        int prediction = kegel1[i] + activeNumber;
+                        if (kegel1[i] == 1){
+                            if (!Arrays.stream(kegel1).anyMatch(j -> j == prediction)){
+                                kegel1[i] = prediction;
+                            } else {
+                                for (int j = 3; j >= 0; j--){
+                                    int prediction2 = kegel1[j] + activeNumber;
+                                    if (prediction2 <= 44 && !Arrays.stream(kegel1).anyMatch(k -> k == prediction2)){
+                                        kegel1[j] = prediction2;
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        }
                     }
 
                 } else {
@@ -92,14 +104,6 @@ public class Simulator {
 
                 Arrays.sort(kegel1);
 
-                for (int i = 0; i < 4; i++){
-                    for (int j = 0; j < 4; j++){
-                        if (kegel1[i] == kegel2[j] && kegel1[i] <= 40 && kegel1[i] != 0){
-                            kegel2[j] = 0;
-                        }
-                    }
-                }
-
                 if (kegel1 == win){
                     winner = 1;
                 } else if (kegel2 == win){
@@ -109,6 +113,14 @@ public class Simulator {
                         activePlayer = 1;
                     } else {
                         activePlayer = 2;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++){
+                    for (int j = 0; j < 4; j++){
+                        if (kegel1[i] <= 40 && kegel1[i] == (kegel2[j] + 20) && kegel1[i] != 0){
+                            kegel2[j] = 0;
+                        }
                     }
                 }
 
@@ -128,6 +140,14 @@ public class Simulator {
                         activePlayer = 2;
                     } else {
                         activePlayer = 1;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++){
+                    for (int j = 0; j < 4; j++){
+                        if (kegel2[i] <= 40 && kegel2[i] == (kegel1[j] - 20) && kegel2[i] != 0){
+                            kegel1[j] = 0;
+                        }
                     }
                 }
 
