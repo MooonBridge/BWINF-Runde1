@@ -27,9 +27,9 @@ public class Simulator {
 
     public int startGame(){
 
-        if (!Arrays.stream(w1).anyMatch(i -> i == 6)){
+        if (Arrays.stream(w1).noneMatch(i -> i == 6)){
             return 2;
-        } else if (!Arrays.stream(w2).anyMatch(i -> i == 6)){
+        } else if (Arrays.stream(w2).noneMatch(i -> i == 6)){
             return 1;
         }
 
@@ -58,12 +58,12 @@ public class Simulator {
                     for (int i = 3; i >= 0; i--){
                         int prediction = kegel1[i] + activeNumber;
                         if (kegel1[i] == 1){
-                            if (!Arrays.stream(kegel1).anyMatch(j -> j == prediction)){
+                            if (Arrays.stream(kegel1).noneMatch(j -> j == prediction)){
                                 kegel1[i] = prediction;
                             } else {
                                 for (int j = 3; j >= 0; j--){
                                     int prediction2 = kegel1[j] + activeNumber;
-                                    if (prediction2 <= 44 && !Arrays.stream(kegel1).anyMatch(k -> k == prediction2)){
+                                    if (prediction2 <= 44 && Arrays.stream(kegel1).noneMatch(k -> k == prediction2)){
                                         kegel1[j] = prediction2;
                                         break;
                                     }
@@ -81,7 +81,7 @@ public class Simulator {
                         } else {
                             for (int i = 3; i >= 0; i--){
                                 int prediction = kegel1[i] + activeNumber;
-                                if (prediction <= 44 && !Arrays.stream(kegel1).anyMatch(j -> j == prediction)){
+                                if (prediction <= 44 && Arrays.stream(kegel1).noneMatch(j -> j == prediction)){
                                     kegel1[i] = prediction;
                                     break;
                                 }
@@ -93,7 +93,7 @@ public class Simulator {
 
                         for (int i = 3; i >= 0; i--){
                             int prediction = kegel1[i] + activeNumber;
-                            if (prediction <= 44 && !Arrays.stream(kegel1).anyMatch(j -> j == prediction)){
+                            if (prediction <= 44 && Arrays.stream(kegel1).noneMatch(j -> j == prediction)){
                                 kegel1[i] = prediction;
                                 break;
                             }
@@ -131,12 +131,12 @@ public class Simulator {
                     for (int i = 3; i >= 0; i--){
                         int prediction = kegel2[i] + activeNumber;
                         if (kegel2[i] == 1){
-                            if (!Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                            if (Arrays.stream(kegel2).noneMatch(j -> j == prediction)){
                                 kegel2[i] = prediction;
                             } else {
                                 for (int j = 3; j >= 0; j--){
                                     int prediction2 = kegel2[j] + activeNumber;
-                                    if (prediction2 <= 44 && !Arrays.stream(kegel2).anyMatch(k -> k == prediction2)){
+                                    if (prediction2 <= 44 && Arrays.stream(kegel2).noneMatch(k -> k == prediction2)){
                                         kegel2[j] = prediction2;
                                         break;
                                     }
@@ -154,7 +154,7 @@ public class Simulator {
                         } else {
                             for (int i = 3; i >= 0; i--){
                                 int prediction = kegel2[i] + activeNumber;
-                                if (prediction <= 44 && !Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                                if (prediction <= 44 && Arrays.stream(kegel2).noneMatch(j -> j == prediction)){
                                     kegel2[i] = prediction;
                                     break;
                                 }
@@ -166,7 +166,7 @@ public class Simulator {
 
                         for (int i = 3; i >= 0; i--){
                             int prediction = kegel2[i] + activeNumber;
-                            if (prediction <= 44 && !Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                            if (prediction <= 44 && Arrays.stream(kegel2).noneMatch(j -> j == prediction)){
                                 kegel2[i] = prediction;
                                 break;
                             }
@@ -196,9 +196,7 @@ public class Simulator {
                 }
 
             }
-
         }
-
     }
 
     public int wuerfeln(int[] w){
