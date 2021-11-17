@@ -126,8 +126,56 @@ public class Simulator {
 
                 activeNumber = wuerfeln(w2);
 
+                if (Arrays.stream(kegel2).anyMatch(i -> i == 1)){
 
+                    for (int i = 3; i >= 0; i--){
+                        int prediction = kegel2[i] + activeNumber;
+                        if (kegel2[i] == 1){
+                            if (!Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                                kegel2[i] = prediction;
+                            } else {
+                                for (int j = 3; j >= 0; j--){
+                                    int prediction2 = kegel2[j] + activeNumber;
+                                    if (prediction2 <= 44 && !Arrays.stream(kegel2).anyMatch(k -> k == prediction2)){
+                                        kegel2[j] = prediction2;
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
 
+                } else {
+
+                    if (activeNumber == 6){
+                        if (kegel2[0] == 0){
+                            kegel2[0] = 1;
+                        } else {
+                            for (int i = 3; i >= 0; i--){
+                                int prediction = kegel2[i] + activeNumber;
+                                if (prediction <= 44 && !Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                                    kegel2[i] = prediction;
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    } else {
+
+                        for (int i = 3; i >= 0; i--){
+                            int prediction = kegel2[i] + activeNumber;
+                            if (prediction <= 44 && !Arrays.stream(kegel2).anyMatch(j -> j == prediction)){
+                                kegel2[i] = prediction;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+
+                Arrays.sort(kegel2);
 
                 if (kegel1 == win){
                     winner = 1;
