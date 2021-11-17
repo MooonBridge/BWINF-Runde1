@@ -52,30 +52,6 @@ public class Simulator {
             if (activePlayer == 1){
 
                 activeNumber = wuerfeln(w1);
-                /*if (activeNumber == 6 && !Arrays.stream(kegel1).anyMatch(i -> i == 0)){
-                    for (int i = 0; i < 4; i++){
-                        int prediction = kegel1[i] + 6;
-                        if (prediction <= 44 && !Arrays.stream(kegel1).anyMatch(j -> j == prediction)){
-                            kegel1[i] = prediction;
-                            break;
-                        }
-                    }
-                } else if (activeNumber == 6 && Arrays.stream(kegel1).anyMatch(i -> i == 0) && Arrays.stream(kegel1).anyMatch(i -> i == 1)){
-                    for (int i = 0; i < 4; i++){
-                        int prediction = kegel1[i] + 6;
-                        if (kegel1[i] == 1){
-                            kegel1[i] = prediction;
-                            break;
-                        }
-                    }
-                } else if (activeNumber == 6 && Arrays.stream(kegel1).anyMatch(i -> i == 0) && !Arrays.stream(kegel1).anyMatch(i -> i == 1)){
-                    for (int i = 0; i < 4; i++){
-                        if (kegel1[i] == 0){
-                            kegel1[i] = 1;
-                            break;
-                        }
-                    }
-                } */
 
                 if (Arrays.stream(kegel1).anyMatch(i -> i == 1)){
 
@@ -84,8 +60,6 @@ public class Simulator {
                     } else {
 
                     }
-
-
 
                 } else {
 
@@ -133,18 +107,26 @@ public class Simulator {
                 } else {
                     if (activeNumber == 6){
                         activePlayer = 1;
+                    } else {
+                        activePlayer = 2;
                     }
                 }
 
             } else {
 
                 activeNumber = wuerfeln(w2);
+
+
+
+
                 if (kegel1 == win){
                     winner = 1;
                 } else if (kegel2 == win){
                     winner = 2;
                 } else {
                     if (activeNumber == 6){
+                        activePlayer = 2;
+                    } else {
                         activePlayer = 1;
                     }
                 }
