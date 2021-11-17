@@ -1,5 +1,6 @@
 package de.moonbridge;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntPredicate;
@@ -20,8 +21,8 @@ public class Simulator {
     public Simulator(int[] wuerfel1, int[] wuerfel2, int pBeginner){
         w1seiten = wuerfel1[0];
         w2seiten = wuerfel2[0];
-        w1 = Arrays.copyOfRange(wuerfel1, 1, wuerfel1.length);
-        w2 = Arrays.copyOfRange(wuerfel2, 1, wuerfel2.length);
+        w1 = Arrays.copyOfRange(wuerfel1, 1, wuerfel1.length - 1);
+        w2 = Arrays.copyOfRange(wuerfel2, 1, wuerfel2.length - 1);
         beginner = pBeginner;
     }
 
@@ -35,12 +36,7 @@ public class Simulator {
 
         gameActive(beginner);
 
-        if(winner == 1){
-            return 1;
-        } else {
-            return 2;
-        }
-
+        return winner;
     }
 
     public void gameActive(int firstPlayer){
@@ -48,10 +44,14 @@ public class Simulator {
         int activePlayer = firstPlayer;
         int activeNumber;
 
+        int sameCounter1 = 0;
+        int sameCounter2 = 0;
+
         while (winner == 0){
             if (activePlayer == 1){
 
                 activeNumber = wuerfeln(w1);
+                int[] tempKegel1 = kegel1;
 
                 if (Arrays.stream(kegel1).anyMatch(i -> i == 1)){
 
@@ -63,7 +63,7 @@ public class Simulator {
                             } else {
                                 for (int j = 3; j >= 0; j--){
                                     int prediction2 = kegel1[j] + activeNumber;
-                                    if (prediction2 <= 44 && Arrays.stream(kegel1).noneMatch(k -> k == prediction2)){
+                                    if (prediction2 <= 44 && Arrays.stream(kegel1).noneMatch(k -> k == prediction2) && kegel1[j] != 0){
                                         kegel1[j] = prediction2;
                                         break;
                                     }
@@ -93,7 +93,7 @@ public class Simulator {
 
                         for (int i = 3; i >= 0; i--){
                             int prediction = kegel1[i] + activeNumber;
-                            if (prediction <= 44 && Arrays.stream(kegel1).noneMatch(j -> j == prediction)){
+                            if (prediction <= 44 && Arrays.stream(kegel1).noneMatch(j -> j == prediction) && kegel1[i] != 0){
                                 kegel1[i] = prediction;
                                 break;
                             }
@@ -103,6 +103,15 @@ public class Simulator {
                 }
 
                 Arrays.sort(kegel1);
+
+                if (kegel1 == tempKegel1){
+                    sameCounter1++;
+                }
+
+                if (sameCounter1 == 200){
+                    winner = 3;
+                    System.out.println("Unentschieden");
+                }
 
                 boolean winning = true;
                 for (int i = 0; i < 4; i++){
@@ -131,6 +140,7 @@ public class Simulator {
             } else {
 
                 activeNumber = wuerfeln(w2);
+                int[] tempKegel2 = kegel2;
 
                 if (Arrays.stream(kegel2).anyMatch(i -> i == 1)){
 
@@ -142,7 +152,7 @@ public class Simulator {
                             } else {
                                 for (int j = 3; j >= 0; j--){
                                     int prediction2 = kegel2[j] + activeNumber;
-                                    if (prediction2 <= 44 && Arrays.stream(kegel2).noneMatch(k -> k == prediction2)){
+                                    if (prediction2 <= 44 && Arrays.stream(kegel2).noneMatch(k -> k == prediction2) && kegel2[j] != 0){
                                         kegel2[j] = prediction2;
                                         break;
                                     }
@@ -172,7 +182,7 @@ public class Simulator {
 
                         for (int i = 3; i >= 0; i--){
                             int prediction = kegel2[i] + activeNumber;
-                            if (prediction <= 44 && Arrays.stream(kegel2).noneMatch(j -> j == prediction)){
+                            if (prediction <= 44 && Arrays.stream(kegel2).noneMatch(j -> j == prediction) && kegel2[i] != 0){
                                 kegel2[i] = prediction;
                                 break;
                             }
@@ -182,6 +192,15 @@ public class Simulator {
                 }
 
                 Arrays.sort(kegel2);
+
+                if (kegel2 == tempKegel2){
+                    sameCounter2++;
+                }
+
+                if (sameCounter2 == 200){
+                    winner = 3;
+                    System.out.println("Unentschieden");
+                }
 
                 boolean winning = true;
                 for (int i = 0; i < 4; i++){
@@ -200,7 +219,7 @@ public class Simulator {
 
                 for (int i = 0; i < 4; i++){
                     for (int j = 0; j < 4; j++){
-                        if (kegel2[i] <= 40 && kegel2[i] == (kegel1[j] - 20) && kegel2[i] != 0){
+                        if (kegel1[i] <= 40 && kegel1[i] == (kegel2[j] + 20) && kegel1[i] != 0){
                             kegel1[j] = 0;
                         }
                     }
