@@ -109,9 +109,7 @@ public class Simulator {
                 } else if (kegel2 == win){
                     winner = 2;
                 } else {
-                    if (activeNumber == 6){
-                        activePlayer = 1;
-                    } else {
+                    if (activeNumber != 6){
                         activePlayer = 2;
                     }
                 }
@@ -136,9 +134,7 @@ public class Simulator {
                 } else if (kegel2 == win){
                     winner = 2;
                 } else {
-                    if (activeNumber == 6){
-                        activePlayer = 2;
-                    } else {
+                    if (activeNumber != 6){
                         activePlayer = 1;
                     }
                 }
