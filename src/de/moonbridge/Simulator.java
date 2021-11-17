@@ -12,8 +12,8 @@ public class Simulator {
     int[] w1;
     int[] w2;
     int[] kegel1 = {1,0,0,0};
-    int[] kegel2 = {21,0,0,0};
-    int[] win = {44,43,42,41};
+    int[] kegel2 = {1,0,0,0};
+    int[] win = {41,42,43,44};
 
     int winner = 0;
 
@@ -104,14 +104,20 @@ public class Simulator {
 
                 Arrays.sort(kegel1);
 
-                if (kegel1 == win){
-                    winner = 1;
-                } else if (kegel2 == win){
-                    winner = 2;
-                } else {
-                    if (activeNumber != 6){
-                        activePlayer = 2;
+                boolean winning = true;
+                for (int i = 0; i < 4; i++){
+                    if (kegel1[i] != win[i]){
+                        winning = false;
+                        break;
                     }
+                }
+
+                if (winning) {
+                    winner = 1;
+                }
+
+                if (activeNumber != 6){
+                    activePlayer = 2;
                 }
 
                 for (int i = 0; i < 4; i++){
@@ -177,14 +183,19 @@ public class Simulator {
 
                 Arrays.sort(kegel2);
 
-                if (kegel1 == win){
-                    winner = 1;
-                } else if (kegel2 == win){
-                    winner = 2;
-                } else {
-                    if (activeNumber != 6){
-                        activePlayer = 1;
+                boolean winning = true;
+                for (int i = 0; i < 4; i++){
+                    if (kegel2[i] != win[i]){
+                        winning = false;
+                        break;
                     }
+                }
+                if (winning) {
+                    winner = 2;
+                }
+
+                if (activeNumber != 6){
+                    activePlayer = 1;
                 }
 
                 for (int i = 0; i < 4; i++){
