@@ -1,7 +1,6 @@
 package de.moonbridge;
 
 import javax.swing.*;
-import javax.swing.plaf.PanelUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -88,7 +87,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
             try{
                 URL url = new URL(textField.getText());
                 try {
-                    analyzeWuerfel.startAnalyis(textField.getText());
+                    analyzeWuerfel.startAnalyis(url.getPath());
                     panel.setText("");
                     panel.append("Analysiere folgenden Link: " + textField.getText() + "\n");
                 } catch (Exception e1){
@@ -130,9 +129,9 @@ public class ProgramFrame extends JFrame implements ActionListener {
         panel.append("\n");
         int[][] sortierteWuerfel = analyzeWuerfel.getErgebnis();
         panel.append("Sortierte Liste der besten Wuerfel:\n");
-        for (int i = 0; i < sortierteWuerfel.length; i++){
-            panel.append("Wuerfel Nr. " + sortierteWuerfel[i][0]);
-            panel.append(" mit " + sortierteWuerfel[i][1] + " Siegen\n");
+        for (int[] ints : sortierteWuerfel) {
+            panel.append("Wuerfel Nr. " + ints[0]);
+            panel.append(" mit " + ints[1] + " Siegen\n");
         }
 
     }
