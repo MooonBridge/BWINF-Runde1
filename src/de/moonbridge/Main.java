@@ -20,6 +20,8 @@ public class Main {
         scan = new Scanner(System.in);
         arrayListe = new ArrayList<>();
 
+        ProgramFrame frame = new ProgramFrame();
+
         System.out.println("Link zum Textdokument einfuegen:");
         readData(scan.nextLine());
 
