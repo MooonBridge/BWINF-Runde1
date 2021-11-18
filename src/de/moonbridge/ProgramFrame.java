@@ -87,7 +87,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
             try{
                 URL url = new URL(textField.getText());
                 try {
-                    analyzeWuerfel.startAnalyis(url.getPath());
+                    analyzeWuerfel.startAnalyis(textField.getText());
                     panel.setText("");
                     panel.append("Analysiere folgenden Link: " + textField.getText() + "\n");
                 } catch (Exception e1){
