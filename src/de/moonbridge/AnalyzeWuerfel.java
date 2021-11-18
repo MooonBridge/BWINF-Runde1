@@ -1,6 +1,5 @@
 package de.moonbridge;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -24,7 +23,9 @@ public class AnalyzeWuerfel {
     }
 
     public int[][] getErgebnis(){
+
         return sortierteWuerfel;
+
     }
 
     public void readData(String path) {

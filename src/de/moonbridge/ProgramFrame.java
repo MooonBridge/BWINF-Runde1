@@ -129,7 +129,7 @@ public class ProgramFrame extends JFrame implements ActionListener {
 
         panel.append("\n");
         int[][] sortierteWuerfel = analyzeWuerfel.getErgebnis();
-        System.out.println("Sortierte Liste der besten Wuerfel:");
+        panel.append("Sortierte Liste der besten Wuerfel:\n");
         for (int i = 0; i < sortierteWuerfel.length; i++){
             panel.append("Wuerfel Nr. " + sortierteWuerfel[i][0]);
             panel.append(" mit " + sortierteWuerfel[i][1] + " Siegen\n");
