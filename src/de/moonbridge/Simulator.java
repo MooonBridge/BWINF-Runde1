@@ -110,7 +110,6 @@ public class Simulator {
 
                 if (sameCounter1 == 200){
                     winner = 3;
-                    System.out.println("Unentschieden");
                 }
 
                 boolean winning = true;
@@ -199,7 +198,6 @@ public class Simulator {
 
                 if (sameCounter2 == 200){
                     winner = 3;
-                    System.out.println("Unentschieden");
                 }
 
                 boolean winning = true;
