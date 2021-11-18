@@ -93,12 +93,12 @@ public class ProgramFrame extends JFrame implements ActionListener {
                     panel.append("Analysiere folgenden Link: " + textField.getText() + "\n");
                 } catch (Exception e1){
                     panel.setText("");
-                    panel.append("There was an Error analyzing your link");
+                    panel.append("Es gab einen unbekannten Fehler mit der Analyse der URL");
                     return;
                 }
             } catch (Exception exception){
                 panel.setText("");
-                panel.append("Input Text is not an URL");
+                panel.append("Der eingegebene Text ist keine URL");
                 return;
             }
         }
